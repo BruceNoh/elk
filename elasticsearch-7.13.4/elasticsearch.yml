@@ -1,0 +1,27 @@
+cluster.name: my-application
+node.name: node-1
+
+#network.host: 0.0.0.0
+network.host: 192.168.56.111 
+
+discovery.seed_hosts: ["node-1:9300", "node-2:9300", "node-3:9300"]
+cluster.initial_master_nodes: ["node-1", "node-2", "node-3"]
+
+node.roles: [ data, master, ingest, ml, transform ]
+
+path.data: /var/lib/elasticsearch
+path.logs: /var/log/elasticsearch
+
+xpack.security.enabled: true
+
+xpack.security.transport.ssl.enabled: true
+xpack.security.transport.ssl.verification_mode: certificate
+xpack.security.transport.ssl.client_authentication: required
+xpack.security.transport.ssl.keystore.path: /etc/elasticsearch/config/certs/es-cluster.p12
+xpack.security.transport.ssl.truststore.path: /etc/elasticsearch/config/certs/es-cluster.p12
+
+# This turns on SSL for the HTTP (Rest) interface
+xpack.security.http.ssl.enabled: true
+# This configures the keystore to use for SSL on HTTP
+xpack.security.http.ssl.keystore.path: "/etc/elasticsearch/config/certs/http.p12"
+
