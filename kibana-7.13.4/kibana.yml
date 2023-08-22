@@ -1,16 +1,17 @@
+server.name: "elknodes_kibana"
 server.host: "node-1"
 server.port: 5601
+server.ssl.enabled: true
+server.ssl.certificate: /home/es/kibana-8.9.1/certs/server.crt
+server.ssl.key: /home/es/kibana-8.9.1/certs/server.key
 
 elasticsearch.hosts: ["https://node-1:9200", "https://node-2:9200", "https://node-3:9200"]
-#elasticsearch.username: "elastic"
 elasticsearch.username: "kibana_system"
 elasticsearch.password: "elastic"
 
 monitoring.ui.container.elasticsearch.enabled: true
-
-#xpack.security.enabled: true
+xpack.security.enabled: true
 #xpack.security.authc.api_key.enabled: true
 xpack.screenshotting.browser.chromium.disableSandbox: true
-
-elasticsearch.ssl.certificateAuthorities: [ "/home/es/kibana-8.9.1/certs/elastic-stack-ca.p12" ]
-elasticsearch.ssl.verificationMode: none
+elasticsearch.ssl.certificateAuthorities: [ "/home/es/kibana-8.9.1/certs/elastic-certificates.p12" ]
+elasticsearch.ssl.verificationMode: "none"
